@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 // UI component for main post content
 export default function PostContent({ post }) {
@@ -9,12 +12,17 @@ export default function PostContent({ post }) {
     <div className="card">
       <h1>{post?.title}</h1>
       <span className="text-sm">
-        Written by{' '}
+        Opublikowane przez{' '}
         <Link className="text-info" href={`/${post.username}/`}>
           @{post.username}
         </Link>{' '}
-        on {createdAt.toISOString()}
+        {createdAt.toISOString()}
       </span>
+      <Carousel className='galeria' autoPlay={true} interval='5000' infiniteLoop={true} showStatus={false}>
+        {post.gallery.map((element) => (
+          <img src={element} alt='' />
+        ))}
+      </Carousel>
       <ReactMarkdown>{post?.content}</ReactMarkdown>
     </div>
   );

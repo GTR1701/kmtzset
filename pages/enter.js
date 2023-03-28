@@ -30,7 +30,7 @@ function SignInButton() {
   return (
     <>
       <button className="btn-google" onClick={signInWithGoogle}>
-        <img src={'/google.png'} width="30px" /> Sign in with Google
+        <img src={'/google.png'} width="30px" /> Zaloguj się przez Google
       </button>
       {/* <button onClick={() => signInAnonymously(auth)}>
         Sign in Anonymously
@@ -41,7 +41,7 @@ function SignInButton() {
 
 // Sign out button
 function SignOutButton() {
-  return <button onClick={() => signOut(auth)}>Sign Out</button>;
+  return <button onClick={() => signOut(auth)}>Wyloguj</button>;
 }
 
 // Username form
@@ -99,7 +99,6 @@ function UsernameForm() {
       if (username.length >= 3) {
         const ref = doc(getFirestore(), 'usernames', username);
         const snap = await getDoc(ref);
-        console.log('Firestore read executed!', snap.exists());
         setIsValid(!snap.exists());
         setLoading(false);
       }
@@ -110,12 +109,12 @@ function UsernameForm() {
   return (
     !username && (
       <section>
-        <h3>Choose Username</h3>
+        <h3>Podaj nazwę użytkownika</h3>
         <form onSubmit={onSubmit}>
           <input name="username" placeholder="myname" value={formValue} onChange={onChange} />
           <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
           <button type="submit" className="btn-green" disabled={!isValid}>
-            Choose
+            Wybierz
           </button>
 
           <h3>Debug State</h3>
@@ -134,11 +133,11 @@ function UsernameForm() {
 
 function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
-    return <p>Checking...</p>;
+    return <p>Sprawdzam...</p>;
   } else if (isValid) {
-    return <p className="text-success">{username} is available!</p>;
+    return <p className="text-success">Nazwa {username} jest dostępna!</p>;
   } else if (username && !isValid) {
-    return <p className="text-danger">That username is taken!</p>;
+    return <p className="text-danger">Ta nazwa użytkownika jest zajęta!</p>;
   } else {
     return <p></p>;
   }

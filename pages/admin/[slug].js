@@ -43,10 +43,10 @@ function PostManager() {
           </section>
 
           <aside>
-            <h3>Tools</h3>
-            <button onClick={() => setPreview(!preview)}>{preview ? 'Edit' : 'Preview'}</button>
+            <h3>Narzędzia</h3>
+            <button onClick={() => setPreview(!preview)}>{preview ? 'Edytuj' : 'Podgląd w Edytorze'}</button>
             <Link href={`/${post.username}/${post.slug}`}>
-              <button className="btn-blue">Live view</button>
+              <button className="btn-blue">Podgląd artykułu na żywo</button>
             </Link>
             <DeletePostButton postRef={postRef} />
           </aside>
@@ -82,7 +82,7 @@ function PostForm({ defaultValues, postRef, preview }) {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
-        <ImageUploader />
+        <ImageUploader postref={postRef} />
 
         <textarea
           {...register('content', {
@@ -92,14 +92,13 @@ function PostForm({ defaultValues, postRef, preview }) {
           })}></textarea>
 
         {/* {errors.content && <p className="text-danger">{errors.content.message}</p>} */}
-        {console.log(errors)}
         <fieldset>
           <input className={styles.checkbox} {...register('published')} type="checkbox" />
-          <label>Published</label>
+          <label>Opublikowany</label>
         </fieldset>
 
         <button type="submit" className="btn-green" disabled={!isDirty || !isValid}>
-          Save Changes
+          Zapisz Zmiany
         </button>
       </div>
     </form>
@@ -120,7 +119,7 @@ function DeletePostButton({ postRef }) {
 
   return (
     <button className="btn-red" onClick={deletePost}>
-      Delete
+      Usuń post
     </button>
   );
 }

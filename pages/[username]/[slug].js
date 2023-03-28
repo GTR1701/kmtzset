@@ -4,7 +4,7 @@ import HeartButton from '@components/HeartButton';
 import AuthCheck from '@components/AuthCheck';
 import Metatags from '@components/Metatags';
 import { UserContext } from '@lib/context';
-import { firestore, getUserWithUsername, postToJSON } from '@lib/firebase';
+import { getUserWithUsername, postToJSON } from '@lib/firebase';
 import { doc, getDocs, getDoc, collectionGroup, query, limit, getFirestore } from 'firebase/firestore';
 
 
@@ -85,7 +85,7 @@ export default function Post(props) {
         <AuthCheck
           fallback={
             <Link href="/enter">
-              <button>💗 Sign Up</button>
+              <button>💗 Zaloguj się</button>
             </Link>
           }
         >
@@ -94,7 +94,7 @@ export default function Post(props) {
 
         {currentUser?.uid === post.uid && (
           <Link href={`/admin/${post.slug}`}>
-            <button className="btn-blue">Edit Post</button>
+            <button className="btn-blue">Edytuj Post</button>
           </Link>
         )}
       </aside>

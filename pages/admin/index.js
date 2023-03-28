@@ -36,7 +36,7 @@ function PostList() {
 
   return (
     <>
-      <h1>Manage your Posts</h1>
+      <h1>Zarządzaj postami</h1>
       <PostFeed posts={posts} admin />
     </>
   );
@@ -46,6 +46,7 @@ function CreateNewPost() {
   const router = useRouter();
   const { username } = useContext(UserContext);
   const [title, setTitle] = useState('');
+  const gallery = []
 
   // Ensure slug is URL safe
   const slug = encodeURI(kebabCase(title));
@@ -65,6 +66,7 @@ function CreateNewPost() {
       slug,
       uid,
       username,
+      gallery,
       published: false,
       content: '# hello world!',
       createdAt: serverTimestamp(),
@@ -85,14 +87,14 @@ function CreateNewPost() {
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="My Awesome Article!"
+        placeholder="Tytuł postu"
         className={styles.input}
       />
       <p>
         <strong>Slug:</strong> {slug}
       </p>
       <button type="submit" disabled={!isValid} className="btn-green">
-        Create New Post
+        Utwórz nowy post
       </button>
     </form>
   );

@@ -11,7 +11,6 @@ export default function Navbar({ canWrite }) {
   const { user, username } = useContext(UserContext);
 
   const router = useRouter();
-  console.log(canWrite)
 
   const signOutNow = () => {
     signOut(auth);
@@ -31,12 +30,12 @@ export default function Navbar({ canWrite }) {
         {username && (
           <>
             <li className="push-left">
-              <button onClick={signOutNow}>Sign Out</button>
+              <button onClick={signOutNow}>Wyloguj</button>
             </li>
 
             <li>
               <Link href="/admin">
-                <button className="btn-blue">Write Posts</button>
+                <button className="btn-blue">Panel admina</button>
               </Link>
             </li>
 
@@ -52,7 +51,7 @@ export default function Navbar({ canWrite }) {
         {!username && (
           <li>
             <Link href="/enter">
-              <button className="btn-blue">Log in</button>
+              <button className="btn-blue">Zaloguj</button>
             </Link>
           </li>
         )}

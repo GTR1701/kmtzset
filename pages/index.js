@@ -66,7 +66,7 @@ export default function Home(props) {
         <h2>Blog Klubu Młodego Technika w ZSET</h2>
       </div>
 
-      <Carousel autoPlay={true} interval='5000' infiniteLoop={true}>
+      <Carousel autoPlay={true} interval='5000' infiniteLoop={true} showStatus={false} showThumbs={false} showArrows={false} showIndicators={false}>
         <img className='carousel-image' src='dOtw2.jpg' alt=''></img>
         <img className='carousel-image' src='dOtw3.jpg' alt=''></img>
         <img className='carousel-image' src='dOtw4.jpg' alt=''></img>
@@ -74,11 +74,11 @@ export default function Home(props) {
 
       <PostFeed posts={posts} />
 
-      {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
+      {!loading && !postsEnd && <button onClick={getMorePosts}>Załaduj więcej postów</button>}
 
       <Loader show={loading} />
 
-      {postsEnd && 'You have reached the end!'}
+      {postsEnd && 'Dotarłeś do końca!'}
     </main>
   );
 }

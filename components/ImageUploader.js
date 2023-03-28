@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { auth, storage, STATE_CHANGED } from '@lib/firebase';
+import { auth, storage, STATE_CHANGED, postToJSON } from '@lib/firebase';
 import Loader from './Loader';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
 
 // Uploads images to Firebase Storage
-export default function ImageUploader() {
+export default function ImageUploader({ postref }) {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [downloadURL, setDownloadURL] = useState(null);
@@ -14,6 +15,7 @@ export default function ImageUploader() {
     // Get the file
     const file = Array.from(e.target.files)[0];
     const extension = file.type.split('/')[1];
+    let gallery = postToJSON(await getDoc(postref)).gallery;
 
     // Makes reference to the storage bucket location
     const fileRef = ref(storage, `uploads/${auth.currentUser.uid}/${Date.now()}.${extension}`);
@@ -34,8 +36,17 @@ export default function ImageUploader() {
       .then((url) => {
         setDownloadURL(url);
         setUploading(false);
+        gallery.push(url)
+        uploadGallery(gallery)
       });
   };
+
+  const uploadGallery = async (gallery) => {
+    await updateDoc(postref, {
+      gallery,
+      updatedAt: serverTimestamp()
+    })
+  }
 
   return (
     <div className="box">
@@ -45,7 +56,7 @@ export default function ImageUploader() {
       {!uploading && (
         <>
           <label className="btn">
-            📸 Upload Img
+            📸 Prześlij obraz
             <input type="file" onChange={uploadFile} accept="image/x-png,image/gif,image/jpeg" />
           </label>
         </>
