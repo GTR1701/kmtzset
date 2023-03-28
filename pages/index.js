@@ -3,8 +3,9 @@ import Metatags from '@components/Metatags';
 import Loader from '@components/Loader';
 import { postToJSON } from '@lib/firebase';
 import { Timestamp, query, where, orderBy, limit, collectionGroup, getDocs, startAfter, getFirestore } from 'firebase/firestore';
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
 
 const LIMIT = 10;
 
@@ -64,6 +65,12 @@ export default function Home(props) {
       <div className="card card-info">
         <h2>Blog Klubu Młodego Technika w ZSET</h2>
       </div>
+
+      <Carousel autoPlay={true} interval='5000' infiniteLoop={true}>
+        <img className='carousel-image' src='dOtw2.jpg' alt=''></img>
+        <img className='carousel-image' src='dOtw3.jpg' alt=''></img>
+        <img className='carousel-image' src='dOtw4.jpg' alt=''></img>
+      </Carousel>
 
       <PostFeed posts={posts} />
 

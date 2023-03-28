@@ -9,6 +9,7 @@
   --color-gray: #b5bdc4;
   --color-zset: #130c42;
 }
+
 html,
 body {
   padding: 0;
@@ -26,9 +27,11 @@ main {
 h1 {
   font-size: 2rem;
 }
+
 h2 {
   font-size: 1.5rem;
 }
+
 h2 {
   font-size: 1.25rem;
 }
@@ -77,7 +80,6 @@ code {
   top: 0;
   padding: 0 10vw;
   font-weight: bold;
-  border-bottom: 1px solid var(--color-gray);
   z-index: 99;
 }
 
@@ -214,6 +216,7 @@ button.btn-logo {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -232,6 +235,7 @@ input[type="file"] {
   padding: 5px;
   margin: 5px 0;
 }
+
 /* Utilities */
 
 .push-left {

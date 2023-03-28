@@ -32,9 +32,9 @@ function SignInButton() {
       <button className="btn-google" onClick={signInWithGoogle}>
         <img src={'/google.png'} width="30px" /> Sign in with Google
       </button>
-      <button onClick={() => signInAnonymously(auth)}>
+      {/* <button onClick={() => signInAnonymously(auth)}>
         Sign in Anonymously
-      </button>
+      </button> */}
     </>
   );
 }
