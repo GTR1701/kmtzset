@@ -9,7 +9,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 const LIMIT = 10;
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const ref = collectionGroup(getFirestore(), 'posts');
   const postsQuery = query(
     ref,

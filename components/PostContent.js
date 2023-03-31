@@ -18,7 +18,7 @@ export default function PostContent({ post }) {
         </Link>{' '}
         {createdAt.toISOString()}
       </span>
-      <Carousel className='galeria' autoPlay={true} interval='5000' infiniteLoop={true} showStatus={false}>
+      <Carousel className='galeria' autoPlay={true} interval='5000' infiniteLoop={true} showStatus={false} dynamicHeight={true}>
         {post.gallery.map((element) => (
           <img src={element} alt='' />
         ))}
